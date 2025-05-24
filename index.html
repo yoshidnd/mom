@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mj Signo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+        /* General Body Styles */
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            background-image: url('fam.jpg'); /* Background image for the page */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-color: #1a1a1a; /* Fallback background color */
+            color: #f0f0f0;
+            padding-top: 50px;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        /* Main Container Styles */
+        .container {
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            background: rgba(255, 231, 223, 0.81);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(253, 126, 204, 0.81);
+            margin-bottom: 30px;
+        }
+
+        .watermark {
+            text-align: center;
+            font-size: 12px;
+            color: #6b0c36;
+            background-color: rgba(255, 255, 255, 0.5); /* light background */
+            padding: 5px 12px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-style: italic;
+            display: inline-block;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Profile Header Section */
+        .profile-header {
+            margin-bottom: 30px;
+        }
+
+        .profile-pic {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #fff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+            margin-bottom: 10px;
+        }
+
+        .profile-name {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: black;
+            margin-bottom: 5px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        .profile-title {
+            font-size: 1.1em;
+            color: black;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Social Icons Section */
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            gap: 25px;
+        }
+
+        .social-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            object-fit: cover;
+            transition: transform 0.2s ease, filter 0.2s ease;
+            filter: grayscale(0%); /* Ensure icons are colored by default */
+        }
+
+        .social-icon:hover {
+            transform: translateY(-3px);
+            filter: grayscale(0%); /* Keep colored on hover */
+        }
+
+        /* Link Button Styles */
+        .link-button {
+            display: flex;
+            align-items: center;
+            background-color: rgba(60, 60, 60, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 12px 20px;
+            margin: 15px auto;
+            text-decoration: none;
+            color: #f0f0f0;
+            font-size: 1.1em;
+            font-weight: normal;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            max-width: 300px;
+            justify-content: flex-start;
+        }
+
+        .link-button:hover {
+            background-color: rgba(80, 80, 80, 0.8);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        .link-button img {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            object-fit: cover;
+            margin-right: 15px;
+            border: none;
+        }
+
+        /* Music Card Styles */
+        .music-card {
+            background-color: rgba(60, 60, 60, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 12px 20px;
+            margin: 15px auto;
+            max-width: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            color: #f0f0f0;
+            cursor: pointer;
+        }
+
+        .music-card:hover {
+            background-color: rgba(80, 80, 80, 0.8);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        .music-card .icon-circle {
+            background-color: #fff;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            margin-right: 15px;
+        }
+
+        .music-card .icon-circle i {
+            color: #ffc107; /* Star icon color */
+            font-size: 1.5em;
+        }
+
+        .music-card .music-text {
+            flex-grow: 1;
+            text-align: left;
+        }
+
+        .music-card .music-text p {
+            margin: 0;
+            font-size: 0.9em;
+            color: #ccc;
+        }
+
+        .music-card .play-button {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .music-card .play-button:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .music-card .play-button i {
+            color: #fff;
+            font-size: 1.2em;
+        }
+
+        /* Menu Icon (Three Dots) */
+        .menu-icon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        .menu-icon span {
+            width: 5px;
+            height: 5px;
+            background-color: black;
+            border-radius: 50%;
+        }
+
+        /* QR Code Modal Overlay & Content (for the three-dot menu) */
+        .qr-modal-overlay {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+
+        .qr-modal-content {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            position: relative;
+            max-width: 350px;
+            width: 90%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .qr-modal-close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 2em;
+            cursor: pointer;
+            color: #555;
+            line-height: 1;
+            padding: 0 5px;
+        }
+
+        .qr-modal-close:hover {
+            color: #000;
+        }
+
+        .qr-modal-profile-pic {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 2px solid #ddd;
+        }
+
+        .qr-modal-name {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .qr-modal-qr-code {
+            width: 200px;
+            height: 200px;
+            margin: 20px 0;
+            border: 1px solid #eee;
+        }
+
+        .qr-modal-download-link,
+        .qr-modal-copy-button {
+            margin-top: 15px;
+            font-size: 0.9em;
+            color: #007bff;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .qr-modal-download-link:hover {
+            text-decoration: underline;
+        }
+
+        .qr-modal-copy-button {
+            display: block;
+            width: calc(100% - 40px);
+            padding: 12px 20px;
+            background-color: #000;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            margin-top: 30px;
+            transition: background-color 0.3s ease;
+        }
+
+        .qr-modal-copy-button:hover {
+            background-color: #333;
+        }
+
+        /* Bootstrap Modal Overrides (for Music Modal) */
+        .modal-content {
+            background-color: #2c2c2c;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .modal-header {
+            border-bottom: 1px solid #4a4a4a;
+        }
+
+        .modal-title {
+            color: white;
+        }
+
+        .btn-close {
+            filter: invert(1); /* Makes the close button white */
+            opacity: 0.8;
+        }
+        .btn-close:hover {
+            opacity: 1;
+        }
+
+        .modal-body iframe {
+            border-radius: 12px;
+        }
+
+        /* Specific Styles for Gcash Modal */
+        .gcash-modal-content {
+            background-color: white !important; /* Force white background for Gcash modal */
+            color: black; /* Text color for Gcash modal content */
+        }
+
+        .gcash-qr-modal-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        /* New: Narrower Modal Dialogs */
+        .modal-dialog-narrow {
+            max-width: 320px; /* Adjust this value to make it more or less narrow */
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            body {
+                padding-top: 20px;
+            }
+
+            .container {
+                width: 95%;
+                padding: 15px;
+                border-radius: 10px;
+            }
+
+            .profile-pic {
+                width: 100px;
+                height: 100px;
+            }
+
+            .profile-name {
+                font-size: 1.5em;
+            }
+
+            .profile-title {
+                font-size: 1em;
+            }
+
+            .link-button {
+                padding: 10px 15px;
+                font-size: 1em;
+            }
+
+            .link-button img {
+                width: 35px;
+                height: 35px;
+            }
+
+            .music-card .icon-circle {
+                width: 35px;
+                height: 35px;
+            }
+
+            .music-card .icon-circle i {
+                font-size: 1.2em;
+            }
+
+            .music-card .play-button {
+                width: 30px;
+                height: 30px;
+            }
+
+            .music-card .play-button i {
+                font-size: 1em;
+            }
+
+            .qr-modal-content {
+                padding: 20px;
+            }
+
+            .qr-modal-qr-code {
+                width: 180px;
+                height: 180px;
+            }
+
+            /* Adjust narrow modal for smaller screens if needed */
+            .modal-dialog-narrow {
+                max-width: 90%; /* Allow it to take more width on very small screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="menu-icon" onclick="openQrModal()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <div class="container">
+        <div class="profile-header">
+            <img src="mom.jpg" alt="Kimberly's Profile Picture" class="profile-pic">
+            <div class="profile-name">Mj Signo</div>
+            <div class="profile-title">Professional Driver | Super Mom</div>
+        </div>
+
+        <div class="social-icons">
+            <a href="jhoychoy64@gmail.com " target="_blank" rel="noopener noreferrer"><img src="gmail.png" alt="Instagram Icon" class="social-icon"></a>
+            <a href="https://www.facebook.com/maryjoy.signo.1" target="_blank" rel="noopener noreferrer"><img src="fb.png" alt="Facebook Icon" class="social-icon"></a>
+
+        </div>
+
+        <a href="" class="link-button"  rel="noopener noreferrer">
+            <img src="viber.png" alt="Website Icon"> 09289105087
+        </a>
+
+        <a href="#" class="link-button" data-bs-toggle="modal" data-bs-target="#gcashModal">
+            <img src="cash.png" alt="Gcash Icon"> Gcash
+        </a>
+        
+
+        <div class="music-card" data-bs-toggle="modal" data-bs-target="#musicModal">
+            <div class="icon-circle">
+                <i class="bi bi-music-note"></i>
+            </div>
+            <div class="music-text">
+                <p class="mb-0 fw-semibold">Music </p>
+            </div>
+            <div class="play-button">
+                <i class="bi bi-play-circle"></i>
+            </div>
+        </div>
+
+        <div class="watermark">
+            &copy; 2025 Sofia & Jhales 
+        </div>
+    </div>
+
+    <div class="modal fade" id="musicModal" tabindex="-1" aria-labelledby="musicModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-narrow"> <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="musicModalLabel">Music</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/2Qz6fXjy6tIDrvOcSoOjdD?utm_source=generator" width="100%" height="250" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="gcashModal" tabindex="-1" aria-labelledby="gcashModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-narrow"> <div class="modal-content gcash-modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="gcashModalLabel" style="color: black;">Gcash QR Code</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="filter: none;"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <img src="gcashqr.jpg"Gcash QR Code" class="gcash-qr-modal-image">
+                    <p style="color: black; margin-top: 15px;">Scan this QR code to send money via Gcash.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="qrModal" class="qr-modal-overlay">
+        <div class="qr-modal-content">
+            <span class="qr-modal-close" onclick="closeQrModal()">×</span>
+            <img src="mom.jpg" alt="Kimberly's Profile Picture" class="qr-modal-profile-pic">
+            <div class="qr-modal-name">MJ</div>
+            <img src="qr.jpg" alt="QR Code" class="qr-modal-qr-code">
+            <a href="qr.jpg" download="qr.jpg" class="qr-modal-download-link">Scan or download QR code</a>
+            <button class="qr-modal-copy-button" onclick="copyPageUrl()">Copy Page URL</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script>
+        // JavaScript for the custom full-page QR modal (three dots)
+        function openQrModal() {
+            document.getElementById('qrModal').style.display = 'flex';
+        }
+
+        function closeQrModal() {
+            document.getElementById('qrModal').style.display = 'none';
+        }
+
+        function copyPageUrl() {
+            const url = window.location.href;
+            navigator.clipboard.writeText(url).then(() => {
+                alert('Page URL copied to clipboard!');
+            }).catch(err => {
+                console.error('Failed to copy URL: ', err);
+                alert('Could not copy URL. Please copy manually: ' + url);
+            });
+        }
+
+        // DOMContentLoaded is generally good practice, but not strictly necessary for simple scripts that run after DOM is ready
+        document.addEventListener('DOMContentLoaded', (event) => {
+            // Any specific JavaScript that needs to run once the DOM is fully loaded can go here.
+            // For Bootstrap modals, data-bs-toggle attributes typically handle opening/closing.
+        });
+    </script>
+</body>
+</html>
